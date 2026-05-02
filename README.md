@@ -1,283 +1,99 @@
-# Smart Attendance System with Face Recognition and Live Tracking
+# 🎓 Smart Attendance System (Face Recognition)
 
-A complete real-time smart attendance system built with Python and OpenCV that automates attendance tracking using computer vision techniques.
-
----
-
-## Table of Contents
-1. [Project Overview](#project-overview)
-2. [Features](#features)
-3. [Installation](#installation)
-4. [Usage](#usage)
-5. [Project Structure](#project-structure)
-6. [Rubric Mapping](#rubric-mapping)
-7. [Keyboard Controls](#keyboard-controls)
-8. [Troubleshooting](#troubleshooting)
+A high-performance, minimalist, and smart attendance tracking system using Computer Vision and Deep Learning. This system identifies registered users, tracks them in real-time, and provides a powerful web-based dashboard for management and reporting.
 
 ---
 
-## Project Overview
+## 🖼️ Visual Previews
 
-**Project Title:** Smart Attendance System with Face Recognition and Live Tracking
+### 📊 Web Dashboard
+![Dashboard Main](screenshots/dashboard_main.png)
 
-**Problem Statement:** Traditional attendance systems (manual sign-in or RFID cards) are time-consuming and prone to errors or misuse. This system automates attendance tracking using computer vision, ensuring accuracy, speed, and security.
-
-**Input Source:** Live video stream from webcam or pre-recorded video files
-
----
-
-## Features
-
-- **Real-time face detection** using Haar Cascades, DNN, or face_recognition library
-- **Face recognition** against a stored database of registered users
-- **Multi-face tracking** across frames to prevent duplicate entries
-- **Liveness detection** via eye detection (prevents photo spoofing)
-- **Gesture recognition** - wave to confirm presence
-- **Preprocessing pipeline** - resize, blur, grayscale, edge detection, noise reduction
-- **Annotated output** with bounding boxes, names, and timestamps
-- **Attendance reports** in CSV and Excel formats
-- **Daily report generation** with statistics
-- **Interactive controls** via keyboard
+### 📈 Attendance History & User Management
+<div align="center">
+  <img src="screenshots/dashboard_history.png" width="48%" />
+  <img src="screenshots/dashboard_users.png" width="48%" />
+</div>
 
 ---
 
-## Installation
+## ✨ Key Features
 
-### Prerequisites
-- Python 3.8+
-- Webcam (for live mode)
+### 📸 Smart Camera System
+- **High-Definition (HD):** Configured for 1280x720 (720p) resolution for crystal clear identification.
+- **Fast Startup:** Uses DirectShow (Windows optimized) for near-instant camera initialization.
+- **Minimalist UI:** Clean, non-distracting overlay showing only the face bounding box and identified name.
+- **Real-time Tracking:** Intelligent user tracking to avoid duplicate attendance entries in the same session.
 
-### Step 1: Clone/Extract the project
-```bash
-cd smart_attendance_system
-```
+### 📊 Web Dashboard (Flask)
+- **Real-time Monitoring:** View today's attendance as it happens.
+- **User Management:** Add new faces directly via your webcam or delete existing users with one click.
+- **4-Month History:** Generate aggregated reports showing how many days each person has attended over the last 120 days.
+- **Advanced Search:** Search for specific names in both daily logs and historical records.
+- **Automatic Reset:** Daily logs clear automatically every 24 hours to keep your focus on today's data.
 
-### Step 2: Install dependencies
-
-**Option A: Full installation (recommended for production)**
-```bash
-pip install -r requirements.txt
-```
-> Note: `face_recognition` requires `dlib` which may need CMake. On Windows, use pre-built wheels or WSL.
-
-**Option B: Quick demo (no dlib required)**
-```bash
-pip install opencv-python numpy pandas openpyxl
-```
-Then run `python demo_mode.py` instead of `main.py`.
-
-### Step 3: Register faces
-```bash
-python register_face.py
-```
-
-### Step 4: Run the system
-```bash
-python main.py
-```
+### ⚡ One-Click Operation
+- **`OPEN_CAMERA.bat`**: Launch the main scanning system immediately.
+- **`OPEN_DASHBOARD.bat`**: Open the web control panel in your browser instantly.
 
 ---
 
-## Usage
+## 🛠️ Installation & Setup
 
-### 1. Register Users
+1. **Clone the Project:**
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/smart_attendance_system.git
+   cd smart_attendance_system
+   ```
 
-**Interactive mode:**
-```bash
-python register_face.py
-```
-
-**Command line:**
-```bash
-# From camera
-python register_face.py --name "John Doe" --id "EMP001"
-
-# From image file
-python register_face.py --name "Jane Smith" --image photos/jane.jpg
-
-# List all users
-python register_face.py --list
-
-# Delete a user
-python register_face.py --delete "John Doe"
-```
-
-### 2. Run Attendance System
-
-**Full mode (requires face_recognition library):**
-```bash
-python main.py
-```
-
-**Demo mode (works without face_recognition):**
-```bash
-python demo_mode.py
-```
-
-### 3. View Reports
-
-Reports are saved in the `reports/` directory:
-- `attendance_log.csv` - Raw attendance data
-- `attendance_report.xlsx` - Formatted Excel report with summary
-- `daily_report_YYYY-MM-DD.txt` - Text summary
+2. **Install Dependencies:**
+   Ensure you have Python 3.8+ installed. Then run:
+   ```bash
+   pip install opencv-python numpy dlib face_recognition flask pandas openpyxl
+   ```
+   *(Note: Installing `dlib` on Windows may require Visual Studio C++ Build Tools.)*
 
 ---
 
-## Project Structure
+## 🚀 How to Use
 
-```
-smart_attendance_system/
-│
-├── main.py                  # Main application (full mode)
-├── demo_mode.py             # Demo mode (no dlib required)
-├── register_face.py         # Face registration utility
-│
-├── config.py                # Configuration settings
-├── preprocessing.py         # Image preprocessing pipeline
-├── detector.py              # Face & eye detection
-├── recognizer.py            # Face recognition
-├── tracker.py               # Face tracking across frames
-├── gesture.py               # Wave gesture detection
-├── database_manager.py      # Attendance logging & reports
-│
-├── requirements.txt         # Python dependencies
-├── README.md               # This file
-│
-├── database/               # Data storage
-│   ├── faces/              # Registered face images
-│   └── face_database.pkl   # Face encodings database
-│
-└── reports/                # Generated reports
-    ├── attendance_log.csv
-    ├── attendance_report.xlsx
-    └── daily_report_*.txt
-```
+### 1. Registering Users
+- Open the **Dashboard** (`OPEN_DASHBOARD.bat`).
+- Click on **"+ Add Face"**.
+- Enter the person's name and look at the camera.
+- Click **"Capture & Save"**.
+
+### 2. Marking Attendance
+- Launch the **Camera** (`OPEN_CAMERA.bat`).
+- The system will automatically detect and recognize faces.
+- Once a face is recognized, attendance is logged for the day.
+- Alternatively, use the **"Mark Attendance"** button in the Dashboard for manual web-scanning.
+
+### 3. Reviewing Reports
+- Click **"📊 4-Month History"** in the dashboard to see long-term attendance trends.
+- Search for any name using the search bars to filter records instantly.
 
 ---
 
-## Rubric Mapping
-
-### 1. Project Title
-✅ **Smart Attendance System with Face Recognition and Live Tracking**
-- Clear and descriptive name defined in `config.py`
-
-### 2. Problem Statement / Objective
-✅ **Automated attendance tracking using computer vision**
-- Eliminates manual sign-in errors and RFID misuse
-- Ensures accuracy, speed, and security
-- Defined in `config.py` and documented in README
-
-### 3. Input Data Source
-✅ **Multiple input types supported:**
-- Live video stream from webcam (`VIDEO_SOURCE = 0`)
-- Pre-recorded video files (`VIDEO_SOURCE = "video.mp4"`)
-- Image datasets for training (`database/faces/`)
-- Configurable in `config.py`
-
-### 4. Preprocessing Steps
-✅ **Complete preprocessing pipeline in `preprocessing.py`:**
-- **Resize** frames for faster processing
-- **Grayscale / HSV** conversion for better detection
-- **Gaussian blur** for noise reduction
-- **Edge detection** (Canny/Sobel) for feature clarity
-- **Noise reduction** (Gaussian, median, bilateral filters)
-- All steps configurable via `config.py`
-
-### 5. Feature Extraction / Detection
-✅ **Multiple detection methods in `detector.py`:**
-- **Face detection:** Haar cascades, DNN, or face_recognition library
-- **Eye detection:** For liveness verification (prevents photo spoofing)
-- **Contour detection:** For bounding boxes and shape analysis
-- Configurable detection method in `config.py`
-
-### 6. Computer Vision Technique
-✅ **Two core techniques implemented:**
-- **Recognition:** Face identification against stored database (`recognizer.py`)
-  - Uses 128-d face encodings (face_recognition) or LBPH fallback
-  - Tolerance threshold for matching accuracy
-- **Tracking:** Centroid-based tracking across frames (`tracker.py`)
-  - Prevents duplicate attendance entries
-  - Handles face disappearance and reappearance
-  - Configurable max distance and disappeared frames
-
-### 7. Output / Result Display
-✅ **Rich output system in `main.py` and `database_manager.py`:**
-- **Annotated frames:** Bounding boxes with names, confidence, timestamps
-- **Real-time display:** `cv2.imshow()` with live attendance log panel
-- **CSV export:** `attendance_log.csv` with all records
-- **Excel report:** `attendance_report.xlsx` with summary sheet
-- **Daily text report:** Formatted daily summary
-- **Auto-save:** Every 5 minutes (configurable)
-
-### 8. User Interaction
-✅ **Multiple interaction methods in `main.py`:**
-- **Real-time feedback:** "Attendance marked for [Name]" displayed on screen
-- **Key presses:**
-  - `q` - Quit application
-  - `s` - Save report immediately
-  - `r` - Register new face
-  - `g` - Toggle gesture detection
-  - `l` - Toggle liveness verification
-- **Gesture interaction:** Wave hand to confirm presence (`gesture.py`)
-- **Visual feedback:** Color-coded boxes, status panels, motion indicators
+## 📁 Project Structure
+- `main.py`: Core application entry point.
+- `dashboard.py`: Flask-based web server and UI.
+- `recognizer.py`: Face encoding and recognition logic.
+- `database_manager.py`: Record keeping (Daily CSV & Master Log).
+- `config.py`: System settings (Resolution, FPS, Thresholds).
+- `reports/`: Stores all CSV and Excel attendance files.
+- `database/faces/`: Stores captured face images.
 
 ---
 
-## Keyboard Controls
-
-| Key | Action |
-|-----|--------|
-| `q` | Quit the application |
-| `s` | Save attendance report (CSV + Excel) |
-| `r` | Enter face registration mode |
-| `g` | Toggle wave gesture detection |
-| `l` | Toggle liveness (eye) verification |
-| `SPACE` | Capture face during registration |
-| `ESC` | Cancel registration |
+## 🔒 Security & Privacy
+- **Master Log:** All attendance data is stored locally in `reports/master_attendance_log.csv`.
+- **Local Processing:** No face data is sent to the cloud; everything is processed locally on your machine.
 
 ---
 
-## Troubleshooting
-
-### face_recognition not installing
-```bash
-# On Ubuntu/Debian
-sudo apt-get install cmake libdlib-dev
-
-# On macOS
-brew install cmake
-
-# Or use demo_mode.py instead (no dlib required)
-python demo_mode.py
-```
-
-### Camera not detected
-- Check if another application is using the camera
-- Try changing `VIDEO_SOURCE` in `config.py`:
-  - `0` = Default webcam
-  - `1` = External webcam
-  - `"video.mp4"` = Video file
-
-### No faces detected
-- Ensure good lighting conditions
-- Adjust `min_size` in `config.py` for smaller/larger faces
-- Try different detection methods (haar, dnn, face_recognition)
-
-### Recognition accuracy issues
-- Register multiple images per person
-- Ensure consistent lighting during registration and recognition
-- Adjust `tolerance` in `config.py` (lower = stricter matching)
+## 🤝 Contributing
+Feel free to fork this project and submit pull requests for any improvements or new features!
 
 ---
-
-## License
-
-This project is for educational purposes.
-
-## Credits
-
-Built with:
-- OpenCV
-- face_recognition (dlib)
-- NumPy
-- Pandas
+*Powered by Python, OpenCV, and Gemini AI Technology.*
