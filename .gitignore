@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project specific
+database/face_database.pkl
+database/lbph_database.yml
+database/lbph_labels.pkl
+reports/*.csv
+reports/*.xlsx
+reports/*.txt
+models/*.caffemodel
+
+# OS
+.DS_Store
+Thumbs.db
